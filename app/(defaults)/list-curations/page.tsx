@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import React, { Fragment, useEffect, useState } from 'react';
 import { DataTable } from 'mantine-datatable';

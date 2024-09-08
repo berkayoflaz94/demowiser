@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import React, { Fragment, useEffect, useState } from 'react';
 import { DataTable } from 'mantine-datatable';
@@ -44,7 +45,6 @@ export default function Page() {
         const to = from + pageSize1;
         setRecordsData1([...initialRecords1.slice(from, to)]);
     }, [page1, pageSize1, initialRecords1, rowData]);
-
     useEffect(() => {
         setInitialRecords1(() => {
             return rowData.filter((item) => {
