@@ -175,7 +175,7 @@ export async function fetchRecommendations(
 export async function apiSearchRecommendations(
     url: string
 ){
-    
+
     try {
         const res = await fetch(`${apiUrl}/posts/search${url}`);
 
@@ -215,5 +215,16 @@ export async function sendMail(data: any){
         body: JSON.stringify(data),
     });
 
+    return await res.json();
+}
+
+export async function apiPostDeleteCuratons(title: any){
+    const res = await fetch(`${apiUrl}/curations/${title._id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(title),
+    });
     return await res.json();
 }
