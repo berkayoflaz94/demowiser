@@ -1,6 +1,6 @@
 "use server";
 
-const apiUrl = "http://192.168.1.103:8080/api"
+const apiUrl = "http://18.193.121.63:8080"
 export async function getTitles(){
     const res = await fetch(`${apiUrl}/titles`, {
         cache: "no-store",
