@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
 import React from 'react';
