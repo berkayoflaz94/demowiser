@@ -19,7 +19,7 @@ export default function AutoCurationPage() {
     const [selectedTitle, setSelectedTitle] = useState('');
     const [selectedCompany, setSelectedCompany] = useState('');
     const [selectedPeople, setSelectedPeople] = useState('');
-    const [selectedLang, setSelectLang] = useState('');
+    const [selectedLang, setSelectLang] = useState('en');
     const [recommendations, setRecommendations] = useState<any>([]);
     const [backupRecommendations, setBackupRecommendations] = useState<any>([]);
 
@@ -55,12 +55,6 @@ export default function AutoCurationPage() {
     }, [selectedCompany]);
 
     const handleCreateRecommend = () => {
-
-        if (!selectedTitle || !selectedCompany || !selectedPeople || !selectedLang) {
-            showMessage('Please select all required fields.', 'error');
-            return;
-        }
-
         setLoading(true);
         fetchRecommendations(selectedTitle, selectedCompany, selectedPeople, selectedLang).then((data) => {
             if (data && Array.isArray(data.main) && Array.isArray(data.backup)) {

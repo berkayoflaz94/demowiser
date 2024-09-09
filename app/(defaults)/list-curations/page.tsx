@@ -66,9 +66,7 @@ export default function Page() {
         setInitialRecords1(() => {
             return rowData.filter((item) => {
                 return (
-                    item._id.toString().includes(search1.toLowerCase()) ||
-                    item.name.toLowerCase().includes(search1.toLowerCase()) ||
-                    item.title.toLowerCase().includes(search1.toLowerCase())
+                    item.name.toLowerCase().includes(search1.toLowerCase())
                 );
             });
         });
@@ -148,8 +146,6 @@ export default function Page() {
                             className="table-hover whitespace-nowrap"
                             records={recordsData1}
                             columns={[
-                                { accessor: '_id', title: 'ID' },
-                                { accessor: 'title', title: 'Title' },
                                 { accessor: 'name', title: 'Name' },
                                 {
                                     accessor: 'actions',
@@ -203,7 +199,7 @@ export default function Page() {
                                     leaveFrom="opacity-100 scale-100"
                                     leaveTo="opacity-0 scale-95"
                                 >
-                                    <Dialog.Panel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
+                                    <Dialog.Panel className="panel w-full max-w-3xl overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
                                         <button
                                             type="button"
                                             onClick={() => setViewPostsModal(false)}
@@ -217,14 +213,20 @@ export default function Page() {
                                         <div className="p-5">
                                             {selectedRecord?.posts.length > 0 ? (
                                                 <div className={"flex flex-col gap-5"}>
-                                                    {selectedRecord?.posts.map((item) => (
-                                                        <a href={item.url} target={'_blank'} key={item._id}
-                                                           className="items-md-center flex flex-col rounded-md border border-white-light bg-white px-6 py-3.5 relative ltr:text-left rtl:text-right dark:border-dark dark:bg-[#1b2e4b] md:flex-row">
+                                                    {selectedRecord?.posts.map((item,index) => (
+                                                        <a href={item.url} target={"_blank"} key={index}
+                                                            className="items-md-center flex flex-col rounded-md border border-white-light bg-white px-6 py-3.5 ltr:text-left rtl:text-right dark:border-dark dark:bg-[#1b2e4b] md:flex-row">
+                                                            <div className="ltr:sm:mr-4 rtl:sm:ml-4">
+                                                                <img alt="avatar" src={item.image}
+                                                                     className="mx-auto h-11 w-11 rounded-full" />
+                                                            </div>
                                                             <div
                                                                 className="flex flex-1 flex-col items-center justify-between text-center md:flex-row md:text-left">
                                                                 <div className="my-3 font-semibold md:my-0">
                                                                     <div
-                                                                        className="text-base dark:text-[#bfc9d4]">{item.explanation}</div>
+                                                                        className="text-sm text-dark dark:text-[#bfc9d4]">{item.title}</div>
+                                                                    <div
+                                                                        className="text-sm text-blue-500 dark:text-[#bfc9d4]">{item.explanation}</div>
                                                                     <div
                                                                         className="text-xs text-white-dark">{item.author}</div>
                                                                 </div>

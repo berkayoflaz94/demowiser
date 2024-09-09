@@ -59,6 +59,12 @@ const MailPlanner = () => {
     const handleSearchRecommend = (selectedRecommendations: any, searchInput: string) => {
         setLoading(true)
 
+        if (!selectedRecommendations){
+            showMessage('Please select any search fields.', 'error');
+            setLoading(false)
+            return null;
+        }
+
         if (selectedRecommendations === "1"){
             apiSearchRecommendations(`?lang=${selectedLang}&titleId=` + selectedTitle).then((data) => {
                 if (data && Array.isArray(data)) {

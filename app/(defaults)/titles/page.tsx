@@ -128,7 +128,14 @@ export default function Page() {
                                 {
                                     accessor: 'keywords',
                                     title: 'Keywords',
-                                    render: (record) => record.keywords.join(', '),
+                                    render: (record) => {
+                                        const keywords = record.keywords;
+                                        if (keywords.length > 3) {
+                                            return `${keywords.slice(0, 3).join(', ')}...`;
+                                        } else {
+                                            return keywords.join(', ');
+                                        }
+                                    },
                                 },
                                 {
                                     accessor: 'actions',

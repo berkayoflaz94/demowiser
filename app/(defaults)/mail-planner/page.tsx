@@ -59,7 +59,7 @@ const MailPlanner = () => {
         }
     }, [selectedCompany]);
 
-    const [sendType, setSendType] = useState('schedule');
+    const [sendType, setSendType] = useState('now');
     const [selectedCronTime, setSelectedCronTime] = useState('');
 
     const [loading, setLoading] = useState(false);
@@ -162,14 +162,17 @@ const MailPlanner = () => {
                     <div className="flex flex-row gap-4">
                         <div className="mb-2">
                             <label className="inline-flex mt-1 cursor-pointer">
-                                <input type="radio" name="segements" className="form-radio" defaultChecked onClick={() => setSendType('schedule')} />
-                                <span className="text-white-dark">Schedule Send</span>
+                                <input type="radio" name="segements" className="form-radio"
+                                       defaultChecked
+                                       onClick={() => setSendType('now')} />
+                                <span className="text-white-dark">Send Now (One Time)</span>
                             </label>
                         </div>
                         <div className="mb-2">
                             <label className="inline-flex mt-1 cursor-pointer">
-                                <input type="radio" name="segements" className="form-radio" onClick={() => setSendType('now')} />
-                                <span className="text-white-dark">Send Now (One Time)</span>
+                                <input type="radio" name="segements" className="form-radio"
+                                       onClick={() => setSendType('schedule')} disabled />
+                                <span className="text-white-dark">Schedule Send</span>
                             </label>
                         </div>
                     </div>
@@ -179,7 +182,7 @@ const MailPlanner = () => {
             {
                 sendType === 'now' && (
                     <>
-                        <div className={"mt-8"}>
+                        <div className={'mt-8'}>
                             <div className="flex gap-4">
                                 <div className="w-full">
                                     <label>Select Collection</label>
