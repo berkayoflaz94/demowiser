@@ -11,8 +11,9 @@ import {
 import ComponentsDragndropDelete from '@/components/dragndrop/components-dragndrop-delete';
 import SearchableSelect from '@/components/Select/SearchableSelect';
 import Loading from '@/components/layouts/loading';
+import withAuth from '@/utils/withAuth';
 
-export default function AutoCurationPage() {
+function AutoCurationPage() {
     const [companyList, setCompanyList] = useState([]);
     const [titles, setTitles] = useState([]);
     const [peoples, setPeoples] = useState<any>([]);
@@ -182,3 +183,6 @@ export default function AutoCurationPage() {
         </div>
     );
 }
+
+
+export default withAuth(AutoCurationPage);

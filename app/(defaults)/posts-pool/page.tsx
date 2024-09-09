@@ -4,6 +4,7 @@ import SearchableSelect from '@/components/Select/SearchableSelect';
 import { apiGetCompanyMembers, apiSearchRecommendations, getApiCompanies, getTitles } from '@/utils/api';
 import { showMessage } from '@/utils/message';
 import Loading from '@/components/layouts/loading';
+import withAuth from '@/utils/withAuth';
 
 const MailPlanner = () => {
     const defaultParams = {
@@ -198,4 +199,4 @@ const MailPlanner = () => {
     );
 };
 
-export default MailPlanner;
+export default withAuth(MailPlanner);

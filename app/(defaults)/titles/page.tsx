@@ -9,8 +9,9 @@ import { apiPostDeleteTitle, apiPostSaveTitle, apiPostUpdateTitle, getTitles } f
 import { showMessage } from '@/utils/message';
 import IconTrashLines from '@/components/icon/icon-trash-lines';
 import TagInput from '@/components/Select/TagInput';
+import withAuth from '@/utils/withAuth';
 
-export default function Page() {
+function Page() {
     const [rowData, setRowData] = useState([]);
     const [rowDataUpdate, setRowDataUpdate] = useState(0);
 
@@ -130,8 +131,8 @@ export default function Page() {
                                     title: 'Keywords',
                                     render: (record) => {
                                         const keywords = record.keywords;
-                                        if (keywords.length > 3) {
-                                            return `${keywords.slice(0, 3).join(', ')}...`;
+                                        if (keywords.length > 1) {
+                                            return `${keywords.slice(0, 1).join(', ')}...`;
                                         } else {
                                             return keywords.join(', ');
                                         }
@@ -295,3 +296,5 @@ export default function Page() {
         </>
     );
 }
+
+export default withAuth(Page)

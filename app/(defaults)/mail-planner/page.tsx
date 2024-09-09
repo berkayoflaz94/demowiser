@@ -4,6 +4,7 @@ import SearchableSelect from '@/components/Select/SearchableSelect';
 import { apiGeCurations, apiGetCompanyMembers, getApiCompanies, getTitles, sendMail } from '@/utils/api';
 import { showMessage } from '@/utils/message';
 import Loading from '@/components/layouts/loading';
+import withAuth from '@/utils/withAuth';
 
 const MailPlanner = () => {
     const defaultParams = {
@@ -225,11 +226,13 @@ const MailPlanner = () => {
 
             <div className={"mt-8"}>
                 <button className="btn btn-primary" onClick={handleCreateSchedule}>
-                    Create Schedule
+                    {
+                        sendType === 'now' ? 'Send Mail' : 'Create Schedule'
+                    }
                 </button>
             </div>
         </div>
     );
 };
 
-export default MailPlanner;
+export default withAuth(MailPlanner);

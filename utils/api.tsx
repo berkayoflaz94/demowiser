@@ -2,6 +2,27 @@
 
 const apiUrl = "http://18.193.121.63:8080/api"
 // const apiUrl = "http://192.168.1.102:8080/api"
+
+export async function apiLogin(user:any){
+    try {
+        const res = await fetch(`${apiUrl}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            cache: 'no-store',
+            body: JSON.stringify(user),
+        });
+
+        if (!res.ok) {
+            throw new Error('Giriş bilgileri hatalı veya sunucuya ulaşılamıyor.');
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('API Login Hatası:', error);
+        return null;
+    }
+}
+
 export async function getTitles(){
     const res = await fetch(`${apiUrl}/titles`, {
         cache: "no-store",

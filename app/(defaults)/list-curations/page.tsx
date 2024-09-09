@@ -18,8 +18,9 @@ import {
 } from '@/utils/api';
 import TagInput from '@/components/Select/TagInput';
 import SearchableSelect from '@/components/Select/SearchableSelect';
+import withAuth from '@/utils/withAuth';
 
-export default function Page() {
+function Page() {
     const [rowData, setRowData] = useState([]);
     const [rowDataUpdate, setRowDataUpdate] = useState(0);
 
@@ -305,3 +306,5 @@ export default function Page() {
         </>
     );
 }
+
+export default withAuth(Page)

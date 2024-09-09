@@ -1,12 +1,10 @@
+"use client";
 import { Metadata } from 'next';
 import React from 'react';
-
-export const metadata: Metadata = {
-    title: 'Sales Admin',
-};
+import withAuth from '@/utils/withAuth';
 
 const Sales = () => {
     return <div>starter page</div>;
 };
 
-export default Sales;
+export default withAuth(Sales);

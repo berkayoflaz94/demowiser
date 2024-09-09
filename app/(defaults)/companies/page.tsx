@@ -9,8 +9,9 @@ import { showMessage } from '@/utils/message';
 import IconTrashLines from '@/components/icon/icon-trash-lines';
 import TagInput from '@/components/Select/TagInput';
 import { apiPostDeleteCompanies, apiPostSaveCompanies, apiPostUpdateCompanies, getApiCompanies } from '@/utils/api';
+import withAuth from '@/utils/withAuth';
 
-export default function Page() {
+function Page() {
     const [rowData, setRowData] = useState([]);
     const [rowDataUpdate, setRowDataUpdate] = useState(0);
 
@@ -271,3 +272,5 @@ export default function Page() {
         </>
     );
 }
+
+export default withAuth(Page)

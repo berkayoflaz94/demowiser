@@ -4,7 +4,7 @@ import React from 'react';
 const ComponentsFormsLayoutsLogin = () => {
     return (
         <PanelCodeHighlight
-            title="Login Forms"
+            title="Page Forms"
             codeHighlight={`<form className="space-y-5">
     <div>
         <input type="text" placeholder="Enter Full Name *" className="form-input" />

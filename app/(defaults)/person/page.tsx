@@ -16,8 +16,9 @@ import {
 } from '@/utils/api';
 import TagInput from '@/components/Select/TagInput';
 import SearchableSelect from '@/components/Select/SearchableSelect';
+import withAuth from '@/utils/withAuth';
 
-export default function Page() {
+function Page() {
     const [rowData, setRowData] = useState([]);
     const [rowDataUpdate, setRowDataUpdate] = useState(0);
 
@@ -74,7 +75,6 @@ export default function Page() {
         setInitialRecords1(() => {
             return rowData.filter((item) => {
                 return (
-                    item._id.toString().includes(search1.toLowerCase()) ||
                     item.name.toLowerCase().includes(search1.toLowerCase()) ||
                     item.title.name.toLowerCase().includes(search1.toLowerCase()) ||
                     item.company.name.toLowerCase().includes(search1.toLowerCase()) ||
@@ -150,7 +150,6 @@ export default function Page() {
                             className="table-hover whitespace-nowrap"
                             records={recordsData1}
                             columns={[
-                                { accessor: '_id', title: 'ID' },
                                 { accessor: 'name', title: 'Name' },
                                 { accessor: 'email', title: 'Email' },
                                 { accessor: 'title.name', title: 'Title' },
@@ -158,7 +157,14 @@ export default function Page() {
                                 {
                                     accessor: 'keywords',
                                     title: 'Keywords',
-                                    render: (record) => record.keywords.join(', '),
+                                    render: (record) => {
+                                        const keywords = record.keywords;
+                                        if (keywords.length > 1) {
+                                            return `${keywords.slice(0, 1).join(', ')}...`;
+                                        } else {
+                                            return keywords.join(', ');
+                                        }
+                                    },
                                 },
                                 {
                                     accessor: 'actions',
@@ -351,3 +357,5 @@ export default function Page() {
         </>
     );
 }
+
+export default withAuth(Page)
