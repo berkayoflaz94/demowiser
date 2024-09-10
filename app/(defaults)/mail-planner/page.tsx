@@ -32,6 +32,8 @@ const MailPlanner = () => {
     const [curations, setCurations] = useState([]);
     const [selectedCuration, setSelectedCuration] = useState('');
 
+    const [clickCount, setClickCount] = useState(0);
+
     useEffect(() => {
         getApiCompanies().then((data) => setCompanyList(data));
         getTitles().then((data) => setTitles(data));
@@ -92,13 +94,14 @@ const MailPlanner = () => {
     };
 
     const handleCreateSchedule = () => {
+        setClickCount(clickCount + 1);
         setLoading(true)
         let data = {
             curationId: selectedCuration,
             personId: selectedPeople
         }
 
-        sendMail(data)
+        sendMail(data, clickCount)
             .then((data) => {
                 if (data) {
                     showMessage('Mail sent successfully.', 'success');

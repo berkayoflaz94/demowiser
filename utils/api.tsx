@@ -228,8 +228,8 @@ export async function apiPostSaveCurations(title: any){
     return await res.json();
 }
 
-export async function sendMail(data: any){
-    const res = await fetch(`${apiUrl}/posts/sendmail`, {
+export async function sendMail(data: any, count: number){
+    const res = await fetch(`${apiUrl}/posts/sendmail?count=${count}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
